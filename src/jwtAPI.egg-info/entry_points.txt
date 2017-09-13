@@ -1,0 +1,4 @@
+
+      # -*- Entry points: -*-
+      [paste.app_factory]
+      

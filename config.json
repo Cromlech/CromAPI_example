@@ -1,0 +1,27 @@
+{
+    "conf": {
+        "crypto": {
+            "keypath": "/home/trollfot/projects/devel/jwt_api/application/jwt.key"
+        }
+    },
+    "paths": [
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/ez_setup-0.9-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/src",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/zope.schema-4.5.0-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/zope.interface-4.4.2-py3.5-linux-x86_64.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/checkouts/dolmen.api_engine/src",
+        "/home/trollfot/projects/devel/jwt_api/application/checkouts/cromlech.jwt/src",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/rutter-0.2-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/zope.event-4.3.0-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/lib/python3.5/site-packages",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/WebOb-1.7.3-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/pytz-2017.2-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/jwcrypto-0.4.2-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/cryptography-2.0.3-py3.5-linux-x86_64.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/cffi-1.10.0-py3.5-linux-x86_64.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/six-1.10.0-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/asn1crypto-0.22.0-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/idna-2.6-py3.5.egg",
+        "/home/trollfot/projects/devel/jwt_api/application/eggs/pycparser-2.18-py3.5.egg"
+    ]
+}
