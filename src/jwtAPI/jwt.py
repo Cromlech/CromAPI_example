@@ -20,7 +20,7 @@ class ILogin(Interface):
         title="User password",
         required=True,
     )
-    
+
 
 @cors_aware(options, allow)
 @allowed('POST')

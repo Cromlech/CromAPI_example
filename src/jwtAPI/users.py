@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 
 import json
-from zope.schema import ASCIILine, List
-from zope.interface import Interface
+
 from cromlech.jwt.components import TokenException
-from dolmen.api_engine.validation import allowed, validate, cors_aware
 from dolmen.api_engine.responder import reply
-from dolmen.api_engine.components import Endpoint
-from .cors import options, allow
+from dolmen.api_engine.validation import allowed, validate, cors_aware
+from zope.interface import Interface
+from zope.schema import ASCIILine, List
+
 from . import USERS
+from .cors import options, allow
 
 
 def protected(app):
@@ -66,13 +67,12 @@ def PersonalDetails(action_request, overhead):
     return reply(500)  # this should not happen
 
 
-
 @allowed('GET')
 @validate(IUsersListing, 'GET')
 def UsersListing(action_request, overhead):
     listing = []
     for username, details in USERS.items():
-        data = details['payload']
+        payload = details['payload']
         if not action_request.departments:
             listing.append({username: payload})
         elif set(action_request.departments) & set(payload['departments']):
