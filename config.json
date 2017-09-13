@@ -1,9 +1,4 @@
 {
-    "conf": {
-        "crypto": {
-            "keypath": "/home/trollfot/projects/devel/jwt_api/application/jwt.key"
-        }
-    },
     "paths": [
         "/home/trollfot/projects/devel/jwt_api/application/eggs/ez_setup-0.9-py3.5.egg",
         "/home/trollfot/projects/devel/jwt_api/application/src",
@@ -23,5 +18,10 @@
         "/home/trollfot/projects/devel/jwt_api/application/eggs/asn1crypto-0.22.0-py3.5.egg",
         "/home/trollfot/projects/devel/jwt_api/application/eggs/idna-2.6-py3.5.egg",
         "/home/trollfot/projects/devel/jwt_api/application/eggs/pycparser-2.18-py3.5.egg"
-    ]
+    ],
+    "conf": {
+        "crypto": {
+            "keypath": "/home/trollfot/projects/devel/jwt_api/application/jwt.key"
+        }
+    }
 }

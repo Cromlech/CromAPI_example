@@ -1,7 +1,0 @@
-rutter
-cromlech.jwt
-dolmen.api_engine
-zope.interface
-zope.schema
-
-[test]
