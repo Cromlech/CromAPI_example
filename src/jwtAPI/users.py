@@ -6,7 +6,7 @@ from cromlech.jwt.components import TokenException
 from dolmen.api_engine.responder import reply
 from dolmen.api_engine.validation import allowed, validate, cors_aware
 from zope.interface import Interface
-from zope.schema import ASCIILine, List
+from zope.schema import ASCIILine, List, TextLine
 
 from . import USERS
 from .cors import options, allow
@@ -43,6 +43,26 @@ class IUsersListing(Interface):
     )
 
 
+class IRegistration(Interface):
+
+    username = ASCIILine(
+        title="User identifier",
+        required=True,
+    )
+
+    password = TextLine(
+        title="User password",
+        required=True,
+    )
+
+    departments = List(
+        title=u"Department identifiers, for an OR request",
+        required=False,
+        value_type=ASCIILine(),
+    )
+
+    
+@cors_aware(options, allow)
 @allowed('GET')
 @validate(IUserAction, 'GET')
 def UserDetails(action_request, overhead):
@@ -67,24 +87,46 @@ def PersonalDetails(action_request, overhead):
     return reply(500)  # this should not happen
 
 
+@cors_aware(options, allow)
+@allowed('POST')
+@validate(IRegistration, 'JSON')
+def SignUp(action_request, overhead):
+    if action_request.username in USERS:
+        reply(409, text="User already exists")
+
+    user_details = {
+        'password': action_request.password,
+        'payload': {
+            'departments': [d.strip() for d in action_request.departments],
+            },
+        }
+
+    USERS[action_request.username] = user_details
+    return reply(201)
+
+
+@cors_aware(options, allow)
 @allowed('GET')
 @validate(IUsersListing, 'GET')
 def UsersListing(action_request, overhead):
     listing = []
+    departments = frozenset((d.strip() for d in action_request.departments if d))
     for username, details in USERS.items():
-        payload = details['payload']
-        if not action_request.departments:
+        payload = details['payload'] 
+        if not departments:
             listing.append({username: payload})
-        elif set(action_request.departments) & set(payload['departments']):
+        elif departments & set(payload['departments']):
             listing.append({username: payload})
-        if action_request.departments and not listing:
-            return reply(404, text="No matching users found.")
-        return reply(200, text=json.dumps(listing),
-                     content_type="application/json")
+
+    if departments and not listing:
+        return reply(404, text="No matching users found.")
+    return reply(200, text=json.dumps(listing),
+                 content_type="application/json")
 
 
 module = {
     '/details': UserDetails,
     '/list': UsersListing,
     '/personal': PersonalDetails,
+    '/signup': SignUp,
 }
